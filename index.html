@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <title>NDEx V3 — Network Data Exchange</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #f8fafc;
+      --foreground: #172033;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --card: #fff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--background); color: var(--foreground); }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    .topbar {
+      height: 56px; display: flex; align-items: center; gap: 22px; padding: 0 24px;
+      background: #fff; border-bottom: 1px solid var(--line); position: relative; z-index: 2;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 9px; color: #183b69; text-decoration: none; font-weight: 750; letter-spacing: -.03em; white-space: nowrap; }
+    .brand-mark { width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; color: #fff; background: linear-gradient(145deg,#3b82f6,#155eaa); font-weight: 800; font-size: 13px; }
+    .search { display: flex; flex: 1; max-width: 470px; height: 36px; margin-left: auto; }
+    .search input { width: 100%; min-width: 100px; border: 1px solid #cbd5e1; border-right: 0; border-radius: 7px 0 0 7px; padding: 0 12px; outline: none; background: #fff; color: var(--foreground); }
+    .search input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px #2563eb22; }
+    .search button { border: 0; border-radius: 0 7px 7px 0; padding: 0 14px; background: var(--primary); color: white; cursor: pointer; }
+    .search button:hover, .login-trigger:hover { background: var(--primary-dark); }
+    .nav-links { display: flex; align-items: center; gap: 18px; white-space: nowrap; }
+    .nav-links a, .more-button { text-decoration: none; color: #334155; font-size: 14px; }
+    .nav-links a:hover, .more-button:hover { color: var(--primary); }
+    .more-wrap { position: relative; }
+    .more-button { border: 0; background: none; cursor: pointer; padding: 8px 0; }
+    .more-menu { display: none; position: absolute; top: 34px; right: -12px; min-width: 175px; padding: 6px; border: 1px solid var(--line); border-radius: 9px; background: white; box-shadow: 0 10px 30px #0f172a1c; }
+    .more-menu.open { display: grid; }
+    .more-menu a { padding: 8px 10px; border-radius: 6px; }
+    .more-menu a:hover { background: #f1f5f9; }
+    .login-trigger { border: 0; padding: 9px 14px; border-radius: 7px; color: white; background: var(--primary); cursor: pointer; font-weight: 600; white-space: nowrap; }
+    .layout { display: flex; min-height: calc(100vh - 56px); }
+    .sidebar { width: 224px; flex: 0 0 224px; background: #fff; border-right: 1px solid var(--line); }
+    .sidebar-head { padding: 22px 12px 18px; text-align: center; }
+    .sidebar-head h1 { margin: 0; font-size: 24px; letter-spacing: -.04em; }
+    .sidebar-head p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+    .sidebar-empty { min-height: 120px; border-top: 1px solid #f1f5f9; }
+    .main-column { display: flex; flex: 1; min-width: 0; flex-direction: column; }
+    .home-content { width: 100%; max-width: 1360px; margin: 0 auto; padding: 12px 20px 10px; flex: 1; }
+    .featured h2 { margin: 0 0 5px; text-align: center; font-size: 18px; font-weight: 650; }
+    .empty-featured { min-height: 88px; display: grid; place-items: center; padding: 14px; color: #6b7280; text-align: center; }
+    .content-panel { min-height: 340px; height: min(500px, 48vh); padding: 24px; border: 1px solid #f1f5f9; border-radius: 9px; background: #fff; box-shadow: 0 1px 3px #0f172a0a; color: #6b7280; }
+    .logos { min-height: 76px; display: grid; align-content: center; padding: 12px; color: #6b7280; text-align: center; }
+    .logos p { margin: 2px; }
+    .logos small { font-size: 12px; }
+    footer { background: #f1f5f9; padding: 17px 24px; }
+    .footer-inner { display: flex; max-width: 1280px; margin: 0 auto; justify-content: space-between; gap: 28px; color: var(--foreground); font-size: 14px; }
+    footer h3 { margin: 0; font-size: 16px; }
+    footer p { margin: 8px 0 0; line-height: 1.45; }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .copyright { color: var(--muted); font-size: 12px; }
+    .social-link { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-top: 6px; border-radius: 50%; color: #fff; background: #172033; font-size: 12px; font-weight: 700; text-decoration: none; }
+    .welcome-page { flex: 1; display: grid; place-items: center; min-height: 60vh; padding: 30px; }
+    .welcome-page h1 { font-size: clamp(30px, 5vw, 48px); letter-spacing: -.04em; }
+    .back-home { color: var(--primary); }
+    .modal-backdrop { position: fixed; inset: 0; z-index: 10; display: none; place-items: center; padding: 22px; background: #0f172a80; overflow-y: auto; }
+    .modal-backdrop.open { display: grid; }
+    .login-card { width: min(100%, 430px); padding: 28px 32px 30px; border: 1px solid #e4e7eb; border-radius: 10px; background: #fff; box-shadow: 0 24px 70px #02061740; position: relative; }
+    .modal-close { position: absolute; top: 11px; right: 13px; width: 34px; height: 34px; border: 0; border-radius: 7px; background: transparent; color: #64748b; cursor: pointer; font-size: 22px; }
+    .modal-close:hover { background: #f1f5f9; }
+    .kc-brand { margin: 4px 0 25px; text-align: center; color: #1e293b; font-size: 25px; font-weight: 700; letter-spacing: .02em; }
+    .login-card h2 { margin: 0 0 25px; font-size: 21px; line-height: 1.3; text-align: center; font-weight: 600; }
+    .form-group { margin: 0 0 18px; }
+    .form-group label { display: block; margin-bottom: 7px; color: #334155; font-size: 14px; font-weight: 600; }
+    .form-group input { width: 100%; height: 42px; border: 1px solid #b8c2cc; border-radius: 4px; padding: 0 11px; outline: none; }
+    .form-group input:focus { border-color: #0066cc; box-shadow: 0 0 0 2px #0066cc24; }
+    .password-wrap { display: flex; }
+    .password-wrap input { border-radius: 4px 0 0 4px; }
+    .password-toggle { width: 44px; border: 1px solid #b8c2cc; border-left: 0; border-radius: 0 4px 4px 0; background: #f8fafc; cursor: pointer; color: #475569; }
+    .sign-in { width: 100%; min-height: 42px; border: 0; border-radius: 4px; background: #0066cc; color: white; cursor: pointer; font-weight: 650; }
+    .sign-in:hover { background: #0053a6; }
+    .form-message { min-height: 20px; margin: 10px 0 0; color: #b42318; font-size: 13px; }
+    .login-divider { display: flex; align-items: center; gap: 12px; margin: 14px 0; color: #64748b; font-size: 12px; }
+    .login-divider::before, .login-divider::after { content: ""; flex: 1; height: 1px; background: #e2e8f0; }
+    .google-button { width: 100%; min-height: 42px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #aab4c0; border-radius: 4px; background: #fff; color: #334155; cursor: pointer; }
+    .google-button:hover { background: #f8fafc; }
+    .google-g { font-size: 17px; font-weight: 800; color: #4285f4; }
+    .register { margin: 20px 0 0; text-align: center; color: #475569; font-size: 14px; }
+    .register a { color: #0066cc; font-weight: 700; text-decoration: none; }
+    .register a:hover { text-decoration: underline; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 900px) { .nav-links { gap: 11px; } .topbar { gap: 14px; padding: 0 15px; } }
+    @media (max-width: 720px) { .sidebar { display: none; } .nav-links { display: none; } .topbar { gap: 10px; } .search { max-width: none; } .home-content { padding-inline: 12px; } .content-panel { min-height: 230px; height: 36vh; } .footer-inner { flex-direction: column; gap: 20px; } }
+    @media (max-width: 430px) { .brand span:last-child { display: none; } .login-trigger { padding: 8px 10px; } .search button { padding: 0 10px; } .login-card { padding: 25px 22px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar" id="site-header">
+    <a class="brand" href="https://www.ndexbio.org/" aria-label="NDEx home"><span class="brand-mark" aria-hidden="true">N</span><span>NDEx</span></a>
+    <form class="search" id="search-form" role="search">
+      <label class="sr-only" for="site-search">Search networks</label>
+      <input id="site-search" type="search" placeholder="Search networks, users, and more" autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="https://www.ndexbio.org/about">About</a>
+      <a href="https://www.ndexbio.org/docs">Docs</a>
+      <a href="https://www.ndexbio.org/faq">FAQ</a>
+      <div class="more-wrap">
+        <button class="more-button" id="more-button" type="button" aria-expanded="false">More⌄</button>
+        <div class="more-menu" id="more-menu">
+          <a href="https://www.ndexbio.org/contact">Contact Us</a>
+          <a href="https://www.ndexbio.org/report-bug">Report Bug</a>
+          <a href="https://www.ndexbio.org/about#cite">Cite NDEx</a>
+        </div>
+      </div>
+    </nav>
+    <button class="login-trigger" id="login-trigger" type="button">Login</button>
+  </header>
+
+  <div class="layout" id="app-layout">
+    <aside class="sidebar" aria-label="NDEx sidebar">
+      <div class="sidebar-head"><h1>NDEx V3</h1><p>Network Data Exchange</p></div>
+      <div class="sidebar-empty"></div>
+    </aside>
+    <div class="main-column">
+      <main class="home-content" id="home-view">
+        <section class="featured" aria-labelledby="featured-title">
+          <h2 id="featured-title">Featured Content</h2>
+          <div class="empty-featured"><p>No featured content available at this time.</p></div>
+        </section>
+        <section class="content-panel" aria-label="Content"><p>No content available at this time.</p></section>
+        <section class="logos" aria-label="Partner logos">
+          <p>No logos available to display.</p>
+          <small>Configuration: https://home.ndexbio.org/landing_page_content/v2_4_2/logos.json</small>
+        </section>
+      </main>
+      <main class="welcome-page" id="welcome-view" hidden><h1>you made it!</h1></main>
+      <footer id="site-footer">
+        <div class="footer-inner">
+          <div><h3>Legal</h3><p>NDEx <a href="https://home.ndexbio.org/disclaimer-license/">License, Terms &amp; Privacy Policy</a></p><p class="copyright">v3.0.1 · Copyright © 2013–2026, The Regents of the University of California, The Cytoscape Consortium. All rights reserved.</p></div>
+          <div><h3>Follow Us</h3><a class="social-link" aria-label="YouTube" href="https://www.youtube.com/@ndexproject">▶</a></div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="login-modal" role="presentation" aria-hidden="true">
+    <section class="login-card" role="dialog" aria-modal="true" aria-labelledby="login-title">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close login">×</button>
+      <div class="kc-brand">ndex</div>
+      <h2 id="login-title">Sign in to your account</h2>
+      <form id="login-form">
+        <div class="form-group"><label for="username">Username or email</label><input id="username" name="username" type="text" autocomplete="username" autofocus></div>
+        <div class="form-group"><label for="password">Password</label><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="current-password"><button class="password-toggle" id="password-toggle" type="button" aria-label="Show password">◉</button></div></div>
+        <button class="sign-in" type="submit">Sign In</button>
+        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+      </form>
+      <div class="login-divider">OR</div>
+      <button class="google-button" id="google-button" type="button"><span class="google-g" aria-hidden="true">G</span>Sign in with Google</button>
+      <p class="register">New Account? <a href="#" id="register-link">Register</a></p>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const homeView = document.getElementById('home-view');
+      const welcomeView = document.getElementById('welcome-view');
+      const footer = document.getElementById('site-footer');
+      const sidebar = document.querySelector('.sidebar');
+      const modal = document.getElementById('login-modal');
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+      const message = document.getElementById('form-message');
+      const returnTo = new URLSearchParams(location.search).get('returnTo');
+
+      function setWelcome(shouldNavigate) {
+        homeView.hidden = true;
+        footer.hidden = true;
+        sidebar.hidden = true;
+        welcomeView.hidden = false;
+        document.title = 'NDEx — Welcome';
+        if (shouldNavigate) history.pushState({ view: 'welcome' }, '', '?page=welcome');
+      }
+      function setHome() {
+        welcomeView.hidden = true;
+        homeView.hidden = false;
+        footer.hidden = false;
+        sidebar.hidden = false;
+        document.title = 'NDEx V3 — Network Data Exchange';
+      }
+      if (new URLSearchParams(location.search).get('page') === 'welcome') setWelcome(false);
+      window.addEventListener('popstate', () => {
+        if (new URLSearchParams(location.search).get('page') === 'welcome') setWelcome(false);
+        else setHome();
+      });
+      document.getElementById('search-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const query = document.getElementById('site-search').value.trim();
+        location.href = 'https://www.ndexbio.org/search?q=' + encodeURIComponent(query);
+      });
+      document.getElementById('login-trigger').addEventListener('click', () => {
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        message.textContent = '';
+        window.setTimeout(() => username.focus(), 0);
+      });
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        document.getElementById('login-trigger').focus();
+      }
+      document.getElementById('modal-close').addEventListener('click', closeModal);
+      modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+      document.getElementById('password-toggle').addEventListener('click', event => {
+        const show = password.type === 'password';
+        password.type = show ? 'text' : 'password';
+        event.currentTarget.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      });
+      document.getElementById('login-form').addEventListener('submit', event => {
+        event.preventDefault();
+        if (username.value.trim() === 'snoopdoggtrump' && password.value === '') {
+          closeModal();
+          setWelcome(true);
+          window.scrollTo(0, 0);
+        } else {
+          message.textContent = 'Unable to sign in with those credentials.';
+        }
+      });
+      // These two options intentionally have no action yet.
+      document.getElementById('google-button').addEventListener('click', event => event.preventDefault());
+      document.getElementById('register-link').addEventListener('click', event => event.preventDefault());
+      document.getElementById('more-button').addEventListener('click', event => {
+        const menu = document.getElementById('more-menu');
+        const open = menu.classList.toggle('open');
+        event.currentTarget.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.more-wrap')) {
+          document.getElementById('more-menu').classList.remove('open');
+          document.getElementById('more-button').setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
