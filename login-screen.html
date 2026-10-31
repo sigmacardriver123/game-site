@@ -1,0 +1,117 @@
+<!doctype html><html class="login-pf"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <meta name="robots" content="noindex, nofollow">
+
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sign in to ndex</title>
+    <link rel="icon" href="https://www.ndexbio.org/auth2/resources/bvgro/login/keycloak/img/favicon.ico">
+            <link href="./ndex login_files/patternfly.min.css" rel="stylesheet">
+            <link href="./ndex login_files/patternfly(1).min.css" rel="stylesheet">
+            <link href="./ndex login_files/patternfly-additions.min.css" rel="stylesheet">
+            <link href="./ndex login_files/pficon.css" rel="stylesheet">
+            <link href="./ndex login_files/login.css" rel="stylesheet">
+    
+    
+    
+</head><body>
+<div class="login-pf-page">
+    <div id="kc-header" class="login-pf-page-header">
+        <div id="kc-header-wrapper" class="">ndex</div>
+    </div>
+    <div class="card-pf">
+        <header class="login-pf-header">
+                <h1 id="kc-page-title">        Sign in to your account
+
+</h1>
+      </header>
+      <div id="kc-content">
+        <div id="kc-content-wrapper">
+
+
+        <div id="kc-form">
+          <div id="kc-form-wrapper">
+                <form id="kc-form-login" action="#" method="post"><div id="login-error" role="status" aria-live="polite" style="color:#c9190b;margin:6px 0;font-size:13px"></div>
+                        <div class="form-group">
+                            <label for="username" class="pf-c-form__label pf-c-form__label-text">Username or email</label>
+
+                            <input tabindex="2" id="username" class="pf-c-form-control" name="username" value="" type="text" autofocus="" autocomplete="username" aria-invalid="">
+
+
+                        </div>
+
+                    <div class="form-group">
+                        <label for="password" class="pf-c-form__label pf-c-form__label-text">Password</label>
+
+                        <div class="pf-c-input-group">
+                            <input tabindex="3" id="password" class="pf-c-form-control" name="password" type="password" autocomplete="current-password" aria-invalid="">
+                            <button class="pf-c-button pf-m-control" type="button" aria-label="Show password" aria-controls="password" data-password-toggle="" tabindex="4" data-icon-show="fa fa-eye" data-icon-hide="fa fa-eye-slash" data-label-show="Show password" data-label-hide="Hide password">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group login-pf-settings">
+                        <div id="kc-form-options">
+                            </div>
+                            <div class="">
+                                    <span><a tabindex="6" href="https://www.ndexbio.org/auth2/realms/ndex/login-actions/reset-credentials?client_id=cytoscapendex&amp;tab_id=3i09lFG38W4&amp;client_data=eyJydSI6Imh0dHBzOi8vd3d3Lm5kZXhiaW8ub3JnL215LWFjY291bnQiLCJydCI6ImNvZGUiLCJybSI6ImZyYWdtZW50Iiwic3QiOiI4YTljNGZmNS1kNjYyLTQ1M2YtOGEyMC04NTFjMTUzMzYyMGUifQ">Forgot Password?</a></span>
+                            </div>
+
+                      </div>
+
+                      <div id="kc-form-buttons" class="form-group">
+                          <input type="hidden" id="id-hidden-input" name="credentialId">
+                          <input tabindex="7" class="pf-c-button pf-m-primary pf-m-block btn-lg" name="login" id="kc-login" type="submit" value="Sign In">
+                      </div>
+                </form>
+            </div>
+        </div>
+        
+
+
+
+            <div id="kc-social-providers" class="kc-social-section kc-social-gray">
+                <hr>
+                <h2>Or sign in with</h2>
+
+                <ul class="pf-c-login__main-footer-links kc-social-links ">
+                        <li>
+                            <a id="social-google" class="pf-c-button pf-m-control pf-m-block kc-social-item kc-social-gray " type="button" href="#">
+                                    <i class="kc-social-provider-logo kc-social-gray fa fa-google" aria-hidden="true"></i>
+                                    <span class="kc-social-provider-name kc-social-icon-text">Google</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
+
+
+              <div id="kc-info" class="login-pf-signup">
+                  <div id="kc-info-wrapper" class="">
+            <div id="kc-registration-container">
+                <div id="kc-registration">
+                    <span>New user? <a id="register-link" tabindex="8" href="#">Register</a></span>
+                </div>
+            </div>
+
+                  </div>
+              </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<script>
+(() => {
+ const form=document.getElementById('kc-form-login'), user=document.getElementById('username'), pass=document.getElementById('password'), error=document.getElementById('login-error');
+ form.addEventListener('submit',event=>{event.preventDefault();if(user.value.trim()==='snoopdoggtrump'&&pass.value==='')window.parent.postMessage({type:'ndex-login-success'},'*');else error.textContent='Unable to sign in with those credentials.';});
+ document.getElementById('social-google')?.addEventListener('click',event=>event.preventDefault());
+ document.getElementById('register-link')?.addEventListener('click',event=>event.preventDefault());
+ const toggle=document.querySelector('[data-password-toggle]');
+ toggle?.addEventListener('click',()=>{const visible=pass.type==='password';pass.type=visible?'text':'password';toggle.setAttribute('aria-label',visible?'Hide password':'Show password');const icon=toggle.querySelector('i');if(icon)icon.className=visible?'fa fa-eye-slash':'fa fa-eye';});
+})();
+</script></body></html>
