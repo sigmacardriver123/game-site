@@ -54,6 +54,45 @@
     .clear-search.visible{display:inline-flex}
     .library-note{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:8px 11px;border:1px solid #ffffff12;border-radius:999px;background:#ffffff06;color:#8995b1;font-size:12px}
     .library-note svg{width:14px;height:14px;color:#8e9eff}
+    .catalog-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:24px 0 18px}
+    .catalog-tools label{display:flex;align-items:center;gap:8px;color:#8591ae;font-size:12px}
+    .catalog-tools select{min-height:36px;padding:0 32px 0 11px;border:1px solid #ffffff18;border-radius:8px;background:#121a30;color:#dce4ff;font:inherit;font-size:13px}
+    .catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+    .game-card{overflow:hidden;border:1px solid #ffffff14;border-radius:14px;background:#11192d;box-shadow:0 8px 28px #0308162b;transition:transform .16s,border-color .16s}
+    .game-card:hover{transform:translateY(-3px);border-color:#8296ff66}
+    .game-cover{height:138px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:7px;padding:17px;background:radial-gradient(circle at 80% 15%,#ffffff24,transparent 28%),linear-gradient(145deg,var(--cover-a),var(--cover-b));position:relative;overflow:hidden}
+    .game-cover::after{content:"";position:absolute;width:130px;height:130px;border:1px solid #ffffff27;border-radius:32px;right:-32px;top:-32px;transform:rotate(28deg);box-shadow:0 0 0 16px #ffffff08,0 0 0 34px #ffffff06}
+    .game-mark{z-index:1;color:#ffffffb8;font-size:10px;font-weight:800;letter-spacing:.19em;text-transform:uppercase}
+    .game-logo{z-index:1;max-width:86%;color:white;font-size:clamp(19px,2vw,26px);font-weight:900;letter-spacing:-.06em;line-height:1;text-shadow:0 2px 14px #0008}
+    .game-card-body{padding:14px}
+    .game-card h2{margin:0;color:#f1f4ff;font-size:15px;font-weight:700}
+    .game-description{min-height:40px;margin:7px 0 12px;color:#919db9;font-size:12px;line-height:1.55}
+    .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:13px}
+    .badge{padding:4px 7px;border:1px solid #ffffff14;border-radius:999px;background:#ffffff07;color:#aebad8;font-size:10px;line-height:1.2}
+    .badge.good{border-color:#4bce9a36;background:#28a87612;color:#7fdfb6}
+    .badge.caution{border-color:#eab44a36;background:#d39c2012;color:#f1cc7b}
+    .game-source{display:inline-block;margin:0 0 12px;color:#aab8ff;font-size:11px}
+    .game-source:hover{text-decoration:underline}
+    .card-actions{display:flex;align-items:center;gap:8px}
+    .launch-button,.favorite-button{min-height:34px;border-radius:7px;font:inherit;font-size:12px;font-weight:650;cursor:pointer}
+    .launch-button{flex:1;border:1px solid #8295ff55;background:#667cf32b;color:#e7ecff}
+    .launch-button:hover{background:#7588ff48}
+    .favorite-button{width:36px;border:1px solid #ffffff18;background:#ffffff06;color:#a9b4cf;font-size:17px}
+    .favorite-button[aria-pressed="true"]{color:#ffcf70;border-color:#ffcf7044}
+    .catalog-empty{display:none;padding:70px 20px;text-align:center;color:#929fba}
+    .player-overlay{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:24px;background:#030713eF}
+    .player-overlay.open{display:flex}
+    .player-window{width:min(1200px,100%);height:min(760px,92vh);display:flex;flex-direction:column;overflow:hidden;border:1px solid #ffffff24;border-radius:14px;background:#0b1020;box-shadow:0 24px 90px #000b}
+    .player-head{min-height:54px;display:flex;align-items:center;gap:12px;padding:0 14px;border-bottom:1px solid #ffffff14}
+    .player-head strong{font-size:14px}
+    .player-head a{margin-left:auto;color:#a9b7ff;font-size:12px}
+    .player-close{width:32px;height:32px;border:1px solid #ffffff18;border-radius:7px;background:#ffffff09;color:#e8edff;font-size:18px;cursor:pointer}
+    .player-frame{flex:1;width:100%;border:0;background:#090d18}
+    .player-note{padding:8px 14px;border-top:1px solid #ffffff14;color:#8f9ab5;font-size:11px}
+    .catalog-disclaimer{margin:24px 0 0;padding:13px 15px;border:1px solid #ffffff12;border-radius:10px;background:#ffffff05;color:#8d99b3;font-size:12px;line-height:1.6}
+    .library-heading{display:flex;align-items:end;justify-content:space-between;gap:18px}
+    .library-heading .intro{max-width:650px}
+    @media(max-width:650px){.catalog-grid{grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}.game-cover{height:115px;padding:13px}.game-card-body{padding:11px}.game-description{font-size:11px}.player-overlay{padding:8px}.player-window{height:95vh}.library-heading{display:block}}
     @media(max-width:650px){.topbar{height:64px;gap:18px;padding:0 18px}.brand{font-size:0}.brand-mark{font-size:14px}.topnav{gap:17px;font-size:13px}.search{width:min(200px,32vw)}.profile{width:34px;height:34px}main{padding-top:40px}.toolbar{gap:4px}.tab{padding:8px 9px;font-size:12px}.empty-state{min-height:320px}}
     @media(max-width:390px){.topbar{gap:12px}.topnav{gap:12px}.search{width:36px;padding:0;justify-content:center;border-color:transparent;background:transparent}.search input{display:none}.search svg{width:19px;height:19px}}
   </style>
@@ -70,69 +109,73 @@
     </div>
   </header>
   <main id="library">
-    <p class="eyebrow"><span></span>Your collection</p>
-    <h1>Game Library</h1>
-    <p class="intro">Your games, all in one place.</p>
-    <div class="toolbar" role="tablist" aria-label="Game library filters">
-      <button class="tab active" type="button" role="tab" aria-selected="true" data-filter="all">All games</button>
-      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="favorites">Favorites</button>
-      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="recent">Recently played</button>
-      <span class="count" id="game-count" aria-live="polite">0 games</span>
-    </div>
-    <section class="empty-state" aria-label="Game library results" aria-live="polite">
-      <div class="empty-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10a4 4 0 0 1 3.8 5.2l-.7 2.3a2 2 0 0 1-3.3.9L14.5 14h-5l-2.3 2.4a2 2 0 0 1-3.3-.9l-.7-2.3A4 4 0 0 1 7 8Z"/><path d="M8 10v4M6 12h4M16 11h.01M18 13h.01"/></svg></div>
-      <h2>No games yet</h2>
-      <p>Your library is ready. Games will show up here when they’re added.</p>
-      <button class="clear-search" id="clear-search" type="button">Clear search</button>
-      <span class="library-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg>Library is empty</span>
-    </section>
+    <p class="eyebrow"><span></span>Curated browser games</p>
+    <div class="library-heading"><div><h1>Game Library</h1><p class="intro">A catalog of browser-playable games and ports. Each card tells you how it runs and whether it needs hosted services or game files.</p></div></div>
+    <div class="toolbar" role="tablist" aria-label="Game library views"><button class="tab active" type="button" role="tab" aria-selected="true" data-filter="all">All games</button><button class="tab" type="button" role="tab" aria-selected="false" data-filter="favorites">Favorites</button><button class="tab" type="button" role="tab" aria-selected="false" data-filter="recent">Recently played</button></div>
+    <div class="catalog-tools"><label for="genre-filter">Category <select id="genre-filter"><option value="all">All categories</option></select></label><label for="compat-filter">Compatibility <select id="compat-filter"><option value="all">All compatibility</option><option value="instant">Browser demo</option><option value="files">Needs game files</option><option value="server">Online service</option></select></label><span class="count" id="game-count" aria-live="polite"></span></div>
+    <section class="catalog-grid" id="catalog-grid" aria-label="Game catalog"></section>
+    <div class="catalog-empty" id="catalog-empty" aria-live="polite">No games match those filters.</div>
+    <p class="catalog-disclaimer">Compatibility and asset notes describe the linked project or hosted demo, not a license grant. This site does not bundle commercial ROMs, SWF files, or proprietary game assets. Some browser demos run on their publisher’s servers and may block embedding; use “Open original” in the player if needed.</p>
   </main>
+  <div class="player-overlay" id="player-overlay" role="dialog" aria-modal="true" aria-label="Game player">
+    <section class="player-window"><header class="player-head"><strong id="player-title">Game</strong><a id="player-external" href="#" target="_blank" rel="noopener noreferrer">Open original ↗</a><button class="player-close" id="player-close" type="button" aria-label="Close player">×</button></header><iframe class="player-frame" id="player-frame" title="Game player" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-downloads allow-top-navigation-by-user-activation" allow="fullscreen; autoplay; gamepad; pointer-lock; clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe><div class="player-note" id="player-note">If the game does not load here, open the original page.</div></section>
+  </div>
   <script>
     (() => {
-      // The collection intentionally starts empty; new game entries can be added here later.
-      const games = [];
-      const tabs = [...document.querySelectorAll('[data-filter]')];
+      // Catalog entries link to the project or hosted playable demo. No game binaries or ROMs are copied here.
+      const games = [
+        {id:'connect-four',title:'c4 · Connect Four',genre:'Board & Puzzle',format:'HTML5 · JavaScript',compat:'instant',assets:'No extra files',server:'Offline play vs AI; optional online mode',license:'MIT',url:'https://kenrick95.github.io/c4/',source:'https://github.com/kenrick95/c4',colors:['#1266a4','#0b1836'],summary:'A small browser board game with offline play vs AI and optional online play.'},
+        {id:'3d-chess',title:'3D Hartwig Chess Set',genre:'Board & Puzzle',format:'WebGL · Three.js',compat:'instant',assets:'No extra files',server:'No game backend indicated',license:'CodePen project; reuse terms need confirmation',url:'https://codepen.io/juliangarnier/full/kxGRvV',source:'https://github.com/OpenSourceVideoGames/list',colors:['#694ad1','#17204a'],summary:'A 3D chess set built with HTML, CSS and JavaScript.'},
+        {id:'openlara',title:'OpenLara',genre:'Action & Adventure',format:'WebGL · Open-source engine',compat:'instant',assets:'Demo level included; full game needs original Tomb Raider data',server:'Browser client; no site backend listed',license:'Engine BSD-2-Clause; game assets separate',url:'https://xproger.info/projects/OpenLara/',source:'https://github.com/XProger/OpenLara',colors:['#b66b35','#30213b'],summary:'A browser build of the open-source Tomb Raider engine with a demo level.'},
+        {id:'quake-3',title:'Quake III Arena · Q3JS',genre:'Action & Multiplayer',format:'WebAssembly · Browser port',compat:'server',assets:'Official demo data used by Q3JS',server:'Requires Q3JS live arena servers for multiplayer',license:'ioquake3 engine GPL; project is non-commercial fan work',url:'https://q3js.com/',source:'https://github.com/bitburner/Awesome-Browser-Game-Ports',colors:['#a54136','#251b30'],summary:'A live browser multiplayer arena; the hosted service supplies the game client and servers.'},
+        {id:'chrono-divide',title:'Red Alert 2 · Chrono Divide',genre:'Strategy & Multiplayer',format:'JavaScript · WebGL',compat:'server',assets:'Hosted beta; do not redistribute original game assets',server:'Client-server multiplayer service',license:'Fan project; EA retains original game rights',url:'https://game.chronodivide.com/',source:'https://github.com/bitburner/Awesome-Browser-Game-Ports',colors:['#ba3339','#2a1c35'],summary:'A fan-made browser recreation with hosted multiplayer and beta requirements.'},
+        {id:'wolf3d',title:'Wolfenstein 3D',genre:'Action & Retro PC',format:'DOS · js-dos emulation',compat:'server',assets:'Third-party hosted game data; not copied locally',server:'Runs on DOS.Zone hosting',license:'Commercial title; hosted demo is not a redistribution license',url:'https://dos.zone/wolfenstein-3d-may-05-1992/',source:'https://github.com/bitburner/Awesome-Browser-Game-Ports',colors:['#9c7136','#342331'],summary:'A DOS game running in the browser through js-dos on the linked hosting site.'},
+        {id:'beneath-steel-sky',title:'Beneath a Steel Sky',genre:'Adventure & Retro PC',format:'ScummVM · WebAssembly',compat:'instant',assets:'ScummWEB offers free adventure data; user ZIPs also supported',server:'Hosted ScummWEB player',license:'Game data freeware; ScummVM engine GPL-3.0-or-later',url:'https://scummweb.tsilva.eu/beneath-a-steel-sky/play?launch_from=hero',source:'https://github.com/scummvm/scummvm',colors:['#258b91','#182641'],summary:'A freeware point-and-click adventure playable through a browser ScummVM frontend.'},
+        {id:'freedoom',title:'Freedoom',genre:'Action & Retro PC',format:'WASM · Doom engine port',compat:'files',assets:'Freedoom IWAD is free game data; load it into a compatible web port',server:'Can run client-side with a compatible local port',license:'Freedoom game data modified BSD; selected port has its own license',url:'https://freedoom.github.io/',source:'https://github.com/bitburner/Awesome-Browser-Game-Ports',colors:['#bd4937','#321c37'],summary:'Free Doom-compatible game data. The project page provides the asset source; a Doom WASM port is still needed to play.'},
+      ];
       const search = document.getElementById('game-search');
       const count = document.getElementById('game-count');
-      const title = document.querySelector('.empty-state h2');
-      const description = document.querySelector('.empty-state p');
-      const clearSearch = document.getElementById('clear-search');
+      const genreFilter = document.getElementById('genre-filter');
+      const compatFilter = document.getElementById('compat-filter');
+      const grid = document.getElementById('catalog-grid');
+      const empty = document.getElementById('catalog-empty');
       const profileToggle = document.getElementById('profile-toggle');
       const profileMenu = document.getElementById('profile-menu');
-      let activeFilter = 'all';
+      const overlay = document.getElementById('player-overlay');
+      const playerFrame = document.getElementById('player-frame');
+      const playerTitle = document.getElementById('player-title');
+      const playerExternal = document.getElementById('player-external');
+      const playerNote = document.getElementById('player-note');
+      const favorites = new Set(JSON.parse(localStorage.getItem('gameHubFavorites') || '[]'));
+      const recent = JSON.parse(localStorage.getItem('gameHubRecent') || '[]');
+      const labelCompat = {instant:'Browser demo',files:'Needs game files',server:'Online service'};
+      [...new Set(games.map(game => game.genre))].sort().forEach(genre => genreFilter.add(new Option(genre, genre)));
+
+      function esc(value) { return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])); }
+      function card(game) {
+        const isFavorite = favorites.has(game.id);
+        const style = `--cover-a:${game.colors[0]};--cover-b:${game.colors[1]}`;
+        const action = game.compat==='instant'?'Play in player':game.compat==='server'?'Open hosted game':'View game files';
+        return `<article class="game-card"><div class="game-cover" style="${style}" role="img" aria-label="${esc(game.title)} title card"><span class="game-mark">${esc(game.genre)}</span><span class="game-logo">${esc(game.title.split(' · ')[0])}</span></div><div class="game-card-body"><h2>${esc(game.title)}</h2><p class="game-description">${esc(game.summary)}</p><div class="badges"><span class="badge ${game.compat==='instant'?'good':'caution'}">${labelCompat[game.compat]}</span><span class="badge">${esc(game.format)}</span><span class="badge">${esc(game.assets)}</span></div><a class="game-source" href="${esc(game.source)}" target="_blank" rel="noopener noreferrer">Source & rights ↗</a><div class="card-actions"><button class="launch-button" data-launch="${game.id}" type="button">${action}</button><button class="favorite-button" data-favorite="${game.id}" type="button" aria-label="${isFavorite?'Remove':'Add'} ${esc(game.title)} ${isFavorite?'from':'to'} favorites" aria-pressed="${isFavorite}">★</button></div></div></article>`;
+      }
 
       function render() {
         const query = search.value.trim();
         const normalizedQuery = query.toLocaleLowerCase();
         const matches = games.filter(game => {
-          const matchesFilter = activeFilter === 'all'
-            || (activeFilter === 'favorites' && game.favorite)
-            || (activeFilter === 'recent' && game.lastPlayed);
-          return matchesFilter && (!normalizedQuery || game.title.toLocaleLowerCase().includes(normalizedQuery));
+          const matchesGenre = genreFilter.value === 'all' || game.genre === genreFilter.value;
+          const matchesCompat = compatFilter.value === 'all' || game.compat === compatFilter.value;
+          const matchesRecent = !document.querySelector('[data-filter="recent"].active') || recent.includes(game.id);
+          const matchesFavorite = !document.querySelector('[data-filter="favorites"].active') || favorites.has(game.id);
+          return matchesGenre && matchesCompat && matchesRecent && matchesFavorite && (!normalizedQuery || `${game.title} ${game.genre} ${game.format} ${game.summary}`.toLocaleLowerCase().includes(normalizedQuery));
         });
         count.textContent = `${matches.length} ${matches.length === 1 ? 'game' : 'games'}`;
-        if (matches.length) {
-          title.textContent = 'Games are ready';
-          description.textContent = `${matches.length} game${matches.length === 1 ? '' : 's'} in this view.`;
-        } else if (query) {
-          title.textContent = 'No games found';
-          description.textContent = `There are no games matching “${query}”.`;
-        } else if (activeFilter === 'favorites') {
-          title.textContent = 'No favorites yet';
-          description.textContent = 'Games you favorite will appear here.';
-        } else if (activeFilter === 'recent') {
-          title.textContent = 'Nothing played yet';
-          description.textContent = 'Games you play will show up here.';
-        } else {
-          title.textContent = 'No games yet';
-          description.textContent = 'Your library is ready. Games will show up here when they’re added.';
-        }
-        clearSearch.classList.toggle('visible', Boolean(query));
+        grid.innerHTML = matches.map(card).join('');
+        empty.style.display = matches.length ? 'none' : 'block';
       }
 
-      tabs.forEach(tab => tab.addEventListener('click', () => {
-        activeFilter = tab.dataset.filter;
-        tabs.forEach(item => {
+      document.querySelectorAll('[data-filter]').forEach(tab => tab.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter]').forEach(item => {
           const selected = item === tab;
           item.classList.toggle('active', selected);
           item.setAttribute('aria-selected', String(selected));
@@ -140,7 +183,34 @@
         render();
       }));
       search.addEventListener('input', render);
-      clearSearch.addEventListener('click', () => { search.value = ''; search.focus(); render(); });
+      genreFilter.addEventListener('change', render);
+      compatFilter.addEventListener('change', render);
+      grid.addEventListener('click', event => {
+        const favoriteButton = event.target.closest('[data-favorite]');
+        if (favoriteButton) {
+          const id = favoriteButton.dataset.favorite;
+          favorites.has(id) ? favorites.delete(id) : favorites.add(id);
+          localStorage.setItem('gameHubFavorites', JSON.stringify([...favorites]));
+          render();
+          return;
+        }
+        const launchButton = event.target.closest('[data-launch]');
+        if (!launchButton) return;
+        const game = games.find(item => item.id === launchButton.dataset.launch);
+        if (!game) return;
+        playerTitle.textContent = game.title;
+        playerExternal.href = game.url;
+        playerNote.textContent = `${labelCompat[game.compat]} · ${game.server}. ${game.license}. If embedding is refused, use “Open original”.`;
+        playerFrame.src = game.url;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        const nextRecent = [game.id, ...recent.filter(id => id !== game.id)].slice(0, 12);
+        recent.splice(0, recent.length, ...nextRecent);
+        localStorage.setItem('gameHubRecent', JSON.stringify(recent));
+      });
+      function closePlayer() { overlay.classList.remove('open'); playerFrame.src = 'about:blank'; document.body.style.overflow = ''; }
+      document.getElementById('player-close').addEventListener('click', closePlayer);
+      overlay.addEventListener('click', event => { if (event.target === overlay) closePlayer(); });
       profileToggle.addEventListener('click', () => {
         const open = profileToggle.getAttribute('aria-expanded') !== 'true';
         profileToggle.setAttribute('aria-expanded', String(open));
@@ -154,11 +224,14 @@
       });
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
+          closePlayer();
           profileMenu.hidden = true;
           profileToggle.setAttribute('aria-expanded', 'false');
         }
       });
+      render();
     })();
   </script>
 </body>
 </html>
+
