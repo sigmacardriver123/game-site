@@ -160,7 +160,7 @@ html.login-pf body{display:block;color:#111;font-family:"Open Sans",Arial,sans-s
 <script>
 (() => {
  const form=document.getElementById('kc-form-login'), user=document.getElementById('username'), pass=document.getElementById('password'), error=document.getElementById('login-error');
- form.addEventListener('submit',event=>{event.preventDefault();if(user.value.trim()==='snoopdoggtrump'&&pass.value==='')window.parent.postMessage({type:'ndex-login-success'},'*');else error.textContent='Unable to sign in with those credentials.';});
+ form.addEventListener('submit',event=>{event.preventDefault();if(user.value.trim()==='snoopdoggtrump'&&pass.value==='')location.href='welcome.html';else error.textContent='Unable to sign in with those credentials.';});
  document.getElementById('social-google')?.addEventListener('click',event=>event.preventDefault());
  document.getElementById('register-link')?.addEventListener('click',event=>event.preventDefault());
  const toggle=document.querySelector('[data-password-toggle]');
